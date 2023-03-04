@@ -2,21 +2,31 @@ var hr = 0;
 var min = 0;
 var sec = 0;
 var count = 0;
+var flag = false;
+var id;
 
 var timer = false;
 
 function start() {
     timer = true;
-    stopwatch();
+    if(flag == true){
+        return;
+    }
+    else{
+        stopwatch();
+    }
 }
 
 function stop() {
     timer = false;
+    flag = false;
+    clearTimeout(id);
 
 }
 
 function reset() {
     timer = false;
+    flag = false;
     hr = 0;
     min = 0;
     sec = 0;
@@ -29,6 +39,7 @@ function reset() {
 }
 
 function stopwatch() {
+    flag = true;
     if (timer) {
         count += 1;
 
@@ -71,6 +82,6 @@ function stopwatch() {
         document.getElementById("sec").innerHTML = secString;
         document.getElementById("count").innerHTML = countString;
 
-        setTimeout("stopwatch()", 7.1);
+        id = setTimeout("stopwatch()", 7.1);
     }
 }
